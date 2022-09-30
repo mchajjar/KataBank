@@ -4,7 +4,7 @@ import com.example.bankkata.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public interface IUserService {
 
     User getUser(Integer userId);

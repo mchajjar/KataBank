@@ -2,13 +2,18 @@ package com.example.bankkata.services;
 
 import com.example.bankkata.model.User;
 import com.example.bankkata.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserService implements IUserService{
 
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
+    public UserService(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
     @Override
     public User getUser(Integer userId) {
         return userRepository.getReferenceById(userId);
@@ -23,7 +28,6 @@ public class UserService implements IUserService{
     public User updateUser(User user) {
         User existingUser = getUser(user.getCin());
         return addUser(user);
-
     }
 
     @Override

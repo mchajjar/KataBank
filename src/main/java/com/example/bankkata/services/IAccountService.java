@@ -1,10 +1,11 @@
 package com.example.bankkata.services;
 
+import com.example.bankkata.exception.AmountRedExceededException;
 import com.example.bankkata.model.Account;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public interface IAccountService {
     Account getAccount(Integer accountId);
     Account addAccount(Account account);
@@ -13,6 +14,6 @@ public interface IAccountService {
     List<Account> getAccounts();
 
     Account addSaving(Integer accountId , Double amount ) throws Exception;
-    Account withdrawSaving(Integer accountId , Double amount );
+    Account withdrawSaving(Integer accountId , Double amount ) throws AmountRedExceededException;
 
 }

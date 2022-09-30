@@ -1,13 +1,22 @@
 package com.example.bankkata.services;
 
+import com.example.bankkata.exception.AmountRedExceededException;
 import com.example.bankkata.model.Account;
 import com.example.bankkata.repository.AccountrRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class AccountService implements IAccountService{
 
-    AccountrRepository accountrRepository;
+    Double redAmountmax = 1000.;
+
+    private AccountrRepository accountrRepository;
+
+    public AccountService ( AccountrRepository accountrRepository){
+        this.accountrRepository = accountrRepository;
+    }
 
     @Override
     public Account getAccount(Integer accountId) {
@@ -46,8 +55,15 @@ public class AccountService implements IAccountService{
     }
 
     @Override
-    public Account withdrawSaving(Integer accountId, Double amount) {
-        return null;
+    public Account withdrawSaving(Integer accountId, Double amount)
+            throws AmountRedExceededException {
+        Account currentAccount = getAccount(accountId);
+        Double previsopnAmount = currentAccount.getAmount() - amount;
+        if ((previsopnAmount - amount ) > redAmountmax ) {
+            throw  new AmountRedExceededException("");
+        }
+        currentAccount.setAmount(previsopnAmount);
+        return updateAccount(currentAccount);
     }
 
 
