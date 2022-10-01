@@ -8,12 +8,10 @@ import java.util.List;
 
 public interface IAccountService {
     Account getAccount(Integer accountId);
-    Account addAccount(Account account);
+    Account createAccount(Account account);
     Account updateAccount(Account account);
     void deleteAccount(Integer accountId);
     List<Account> getAccounts();
 
-    Account addSaving(Integer accountId , Double amount ) throws Exception;
-    Account withdrawSaving(Integer accountId , Double amount ) throws AmountRedExceededException;
 
 }
