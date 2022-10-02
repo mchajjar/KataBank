@@ -1,5 +1,6 @@
 package com.example.bankkata.controller;
 
+import com.example.bankkata.exception.UserException.UserExistingException;
 import com.example.bankkata.model.Account;
 import com.example.bankkata.services.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class AccountController {
     }
 
     @PostMapping()
-    Account addAccount(@RequestBody Account account){
+    Account addAccount(@RequestBody Account account) throws UserExistingException {
       return   iAccountService.createAccount(account);
     }
     @PutMapping ()

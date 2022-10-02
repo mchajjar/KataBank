@@ -1,6 +1,6 @@
 package com.example.bankkata.services;
 
-import com.example.bankkata.exception.AmountRedExceededException;
+import com.example.bankkata.exception.accountException.AmountRedExceededException;
 import com.example.bankkata.model.Account;
 import com.example.bankkata.model.Operation;
 import com.example.bankkata.repository.OperationRepository;
@@ -38,7 +38,7 @@ public class OperationService implements IOperationService{
         Account currentAccount = accountService.getAccount(accountId);
         Double previsopnAmount = currentAccount.getAmount() - amount;
         if ((previsopnAmount - amount ) > redAmountmax ) {
-            throw  new AmountRedExceededException("");
+            throw  new AmountRedExceededException();
         }
         currentAccount.setAmount(previsopnAmount);
         return accountService.updateAccount(currentAccount);

@@ -1,11 +1,13 @@
 package com.example.bankkata.controller;
 
 
+import com.example.bankkata.exception.UserException.UserNotFoundException;
 import com.example.bankkata.model.User;
 import com.example.bankkata.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -26,12 +28,12 @@ public class UserController {
     }
 
     @PutMapping()
-    User updateUser(@RequestBody  User user){
+    User updateUser(@RequestBody  User user) throws UserNotFoundException {
         return iUserService.updateUser(user);
     }
 
     @DeleteMapping()
-    void deleteUser(User user){
+    void deleteUser(@RequestBody User user) throws UserNotFoundException {
         iUserService.deleteUser(user);
     }
 
