@@ -4,9 +4,10 @@ import com.example.bankkata.exception.UserException.UserExistingException;
 import com.example.bankkata.model.Account;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IAccountService {
-    Account getAccount(Integer accountId);
+    Optional<Account> getAccount(Integer accountId);
     Account createAccount(Account account) throws UserExistingException;
     Account updateAccount(Account account);
     void deleteAccount(Integer accountId);

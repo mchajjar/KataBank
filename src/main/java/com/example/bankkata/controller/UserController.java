@@ -7,8 +7,8 @@ import com.example.bankkata.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -18,7 +18,7 @@ public class UserController {
     IUserService iUserService;
 
     @GetMapping()
-    User getUser(@PathVariable Integer userId) {
+    Optional<User> getUser(@PathVariable Integer userId) {
         return iUserService.getUser(userId);
     }
 
