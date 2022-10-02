@@ -17,7 +17,7 @@ public class AccountController {
     @Autowired
     IAccountService iAccountService;
 
-    @GetMapping()
+    @GetMapping("/{accountId}")
     Optional<Account> getAccount(@PathVariable Integer accountId){
        return iAccountService.getAccount(accountId);
     }
@@ -31,7 +31,7 @@ public class AccountController {
         return iAccountService.updateAccount(account);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{accountId}")
     void deleteAccount(@PathVariable Integer accountId){
         iAccountService.deleteAccount(accountId);
     }

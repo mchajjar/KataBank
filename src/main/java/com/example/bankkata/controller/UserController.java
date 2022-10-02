@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     IUserService iUserService;
 
-    @GetMapping()
+    @GetMapping("/{userId}")
     Optional<User> getUser(@PathVariable Integer userId) {
         return iUserService.getUser(userId);
     }
