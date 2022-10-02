@@ -1,6 +1,7 @@
 package com.example.bankkata.services;
 
 import com.example.bankkata.enums.OperationType;
+import com.example.bankkata.exception.accountException.AccountNotFoundException;
 import com.example.bankkata.exception.accountException.AmountRedExceededException;
 import com.example.bankkata.model.Account;
 import com.example.bankkata.model.Operation;
@@ -8,6 +9,7 @@ import com.example.bankkata.model.User;
 import com.example.bankkata.repository.OperationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -29,12 +31,13 @@ public class OperationService implements IOperationService{
     private UserService userService;
 
     @Override
-    public Account savingOperation(Integer accountId, Double amount) throws Exception {
+    @Transactional
+    public Account savingOperation(Integer accountId, Double amount)  {
         Account currentAccount = accountService.getAccount(accountId).get();
         if ( currentAccount != null ){
             currentAccount.setAmount(currentAccount.getAmount()+ amount);
         }else{
-            throw new Exception(":(");
+            throw new AccountNotFoundException();
         }
         Operation ops = Operation.builder()
                 .accountFrom(currentAccount)
@@ -49,8 +52,8 @@ public class OperationService implements IOperationService{
     }
 
     @Override
-    public Account withdrawOperation(Integer accountId, Double amount)
-            throws AmountRedExceededException {
+    @Transactional
+    public Account withdrawOperation(Integer accountId, Double amount) {
         Account currentAccount = accountService.getAccount(accountId).get();
         Double previsopnAmount = currentAccount.getAmount() - amount;
         if ((previsopnAmount ) < redAmountmax ) {

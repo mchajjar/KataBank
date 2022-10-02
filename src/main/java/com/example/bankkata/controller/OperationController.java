@@ -26,7 +26,7 @@ public class OperationController {
 
     @PostMapping("/withdraw/{accountId}/{amount}")
     Account withdrawSaving(@PathVariable Integer accountId , @PathVariable Double amount )
-            throws AmountRedExceededException {
+            throws Exception {
         return iOperationService.withdrawOperation(accountId,amount);
     }
 
