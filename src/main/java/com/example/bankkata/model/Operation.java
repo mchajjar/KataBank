@@ -18,13 +18,14 @@ public class Operation {
 
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name="type")
     private OperationType type;
 
     @Column(name="amount")
-    private OperationType amount;
+    private Double amount;
 
     @Column(name="executionDate")
     private LocalDate executionDate;
