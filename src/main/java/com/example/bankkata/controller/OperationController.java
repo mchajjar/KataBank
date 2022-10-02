@@ -1,6 +1,6 @@
 package com.example.bankkata.controller;
 
-import com.example.bankkata.exception.AmountRedExceededException;
+import com.example.bankkata.exception.accountException.AmountRedExceededException;
 import com.example.bankkata.model.Account;
 import com.example.bankkata.services.IOperationService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -35,6 +35,10 @@ public class User {
     @Column(name="creationDate")
     private LocalDate creationDate;
 
+    @Column(name="modificationDate")
+    private LocalDate modificationDate;
+
+
     @Column(name="jobTitle")
     private String jobTitle;
 
