@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -17,7 +18,7 @@ public class AccountController {
     IAccountService iAccountService;
 
     @GetMapping()
-    Account getAccount(@PathVariable Integer accountId){
+    Optional<Account> getAccount(@PathVariable Integer accountId){
        return iAccountService.getAccount(accountId);
     }
 

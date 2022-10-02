@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 import com.example.bankkata.enums.AccountType;
@@ -32,6 +29,9 @@ public class Account {
 
     @Column(name="creationDate")
     private LocalDate creationDate;
+
+    @Column(name="modificationDate")
+    private LocalDate modificationDate;
 
     @ManyToOne
     private User userId;

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static com.example.bankkata.utils.AccountConstant.redAmountmax;
 import static com.example.bankkata.utils.OperationConstant.REALEXECDATE;
@@ -23,7 +24,7 @@ public class OperationService implements IOperationService{
 
     @Override
     public Account savingOperation(Integer accountId, Double amount) throws Exception {
-        Account currentAccount = accountService.getAccount(accountId);
+        Account currentAccount = accountService.getAccount(accountId).get();
         if ( currentAccount != null ){
             currentAccount.setAmount(currentAccount.getAmount()+ amount);
         }else{
@@ -35,7 +36,7 @@ public class OperationService implements IOperationService{
     @Override
     public Account withdrawOperation(Integer accountId, Double amount)
             throws AmountRedExceededException {
-        Account currentAccount = accountService.getAccount(accountId);
+        Account currentAccount = accountService.getAccount(accountId).get();
         Double previsopnAmount = currentAccount.getAmount() - amount;
         if ((previsopnAmount - amount ) > redAmountmax ) {
             throw  new AmountRedExceededException();
