@@ -86,5 +86,10 @@ public class AccountService implements IAccountService{
         return accountrRepository.findAll();
     }
 
+    @Override
+    public List<Account> getAccountByUser(Integer userId) {
+        return accountrRepository.findAccountByUser(userId);
+    }
+
 
 }

@@ -1,6 +1,5 @@
 package com.example.bankkata.controller;
 
-import com.example.bankkata.exception.accountException.AmountRedExceededException;
 import com.example.bankkata.model.Account;
 import com.example.bankkata.model.Operation;
 import com.example.bankkata.services.IOperationService;
@@ -34,4 +33,11 @@ public class OperationController {
     List<Operation> getAllOps() {
         return iOperationService.getAllOps();
     }
+
+    @GetMapping("/all/{accountId}")
+    List<Operation> getopsby(@PathVariable Integer accountId) {
+        return iOperationService.getAllOpsByAccountId(accountId);
+    }
+
+
 }

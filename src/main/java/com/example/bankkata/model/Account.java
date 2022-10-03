@@ -21,7 +21,7 @@ public class Account {
     @Column(name="id")
     private Integer id;
 
-    @Column(name="name")
+    @Column(name="type")
     private AccountType type;
 
     @Column(name="surname")

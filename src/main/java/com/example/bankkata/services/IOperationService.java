@@ -12,4 +12,5 @@ public interface IOperationService {
     Account withdrawOperation(Integer accountId , Double amount ) throws Exception;
     Operation AddOperation(Operation ops);
     List<Operation> getAllOps();
+    List<Operation> getAllOpsByAccountId(Integer accountId);
 }
