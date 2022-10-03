@@ -5,7 +5,6 @@ import com.example.bankkata.exception.accountException.AccountNotFoundException;
 import com.example.bankkata.exception.accountException.AmountRedExceededException;
 import com.example.bankkata.model.Account;
 import com.example.bankkata.model.Operation;
-import com.example.bankkata.model.User;
 import com.example.bankkata.repository.OperationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static com.example.bankkata.utils.AccountConstant.redAmountmax;
 import static com.example.bankkata.utils.OperationConstant.REALEXECDATE;
@@ -80,6 +78,11 @@ public class OperationService implements IOperationService{
     @Override
     public List<Operation> getAllOps() {
         return OperationRepository.findAll();
+    }
+
+    @Override
+    public List<Operation> getAllOpsByAccountId(Integer accountId) {
+        return OperationRepository.findAllByAccountId(accountId);
     }
 
     private Operation addOperationToAccount(Operation operation){

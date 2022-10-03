@@ -41,5 +41,11 @@ public class AccountController {
         return iAccountService.getAccounts();
     }
 
+    @GetMapping("/findByUserId/{userId}")
+    List<Account> getAccountByUser(@PathVariable Integer userId){
+        return iAccountService.getAccountByUser(userId);
+    }
+
+
 
 }
