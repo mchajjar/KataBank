@@ -30,7 +30,7 @@ public class OperationService implements IOperationService{
 
     @Override
     @Transactional
-    public Account savingOperation(Integer accountId, Double amount)  {
+    public Operation savingOperation(Integer accountId, Double amount)  {
         Account currentAccount = accountService.getAccount(accountId).get();
         if ( currentAccount != null ){
             currentAccount.setAmount(currentAccount.getAmount()+ amount);
@@ -45,16 +45,17 @@ public class OperationService implements IOperationService{
                 .executionDate(LocalDate.now())
                 .realDate(LocalDate.now())
                 .build();
-        addOperationToAccount(ops);
-        return accountService.updateAccount(currentAccount);
+        accountService.updateAccount(currentAccount);
+        return addOperationToAccount(ops);
+
     }
 
     @Override
     @Transactional
-    public Account withdrawOperation(Integer accountId, Double amount) {
+    public Operation withdrawOperation(Integer accountId, Double amount) {
         Account currentAccount = accountService.getAccount(accountId).get();
         Double previsopnAmount = currentAccount.getAmount() - amount;
-        if ((previsopnAmount ) < redAmountmax ) {
+        if (previsopnAmount < redAmountmax ) {
             throw  new AmountRedExceededException();
         }
         currentAccount.setAmount(previsopnAmount);
@@ -66,8 +67,8 @@ public class OperationService implements IOperationService{
                 .executionDate(LocalDate.now())
                 .realDate(LocalDate.now())
                 .build();
-        addOperationToAccount(ops);
-        return accountService.updateAccount(currentAccount);
+        accountService.updateAccount(currentAccount);
+        return  addOperationToAccount(ops);
     }
 
     @Override

@@ -18,13 +18,13 @@ public class OperationController {
     IOperationService iOperationService;
 
     @PostMapping("/addsaving/{accountId}/{amount}")
-    Account addSaving(@PathVariable Integer accountId , @PathVariable Double amount )
+    Operation addSaving(@PathVariable Integer accountId , @PathVariable Double amount )
             throws Exception{
         return iOperationService.savingOperation(accountId,amount);
     }
 
     @PostMapping("/withdraw/{accountId}/{amount}")
-    Account withdrawSaving(@PathVariable Integer accountId , @PathVariable Double amount )
+    Operation withdrawSaving(@PathVariable Integer accountId , @PathVariable Double amount )
             throws Exception {
         return iOperationService.withdrawOperation(accountId,amount);
     }
